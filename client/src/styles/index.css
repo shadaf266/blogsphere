@@ -1,18 +1,19 @@
 :root {
   /* Colors */
-  --color-primary: #2563eb;
-  --color-primary-hover: #1d4ed8;
-  --color-text: #1f2937;
-  --color-text-muted: #6b7280;
-  --color-bg: #f9fafb;
+  --color-primary: #1a8917;
+  --color-primary-hover: #0f730c;
+  --color-text: #242424;
+  --color-text-muted: #6b6b6b;
+  --color-bg: #ffffff;
   --color-surface: #ffffff;
-  --color-border: #e5e7eb;
-  --color-success: #16a34a;
-  --color-danger: #dc2626;
+  --color-border: #f2f2f2;
+  --color-success: #1a8917;
+  --color-danger: #c94a4a;
+  --color-accent: #ffc017;
 
   /* Fonts */
-  --font-serif: Georgia, 'Times New Roman', serif;
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia, serif;
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
 
   /* Spacing */
   --space-1: 4px;
@@ -26,13 +27,14 @@
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 16px;
+  --radius-pill: 999px;
 
   /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
 
   /* Layout */
-  --container-width: 1200px;
+  --container-width: 1192px;
   --transition: 0.2s ease;
 }
 
@@ -48,7 +50,6 @@ body {
   color: var(--color-text);
   background: var(--color-bg);
   line-height: 1.6;
-  padding: 0 15px;
 }
 
 h1,
@@ -56,12 +57,14 @@ h2,
 h3,
 h4 {
   font-family: var(--font-serif);
+  font-weight: 700;
   line-height: 1.2;
+  letter-spacing: -0.02em;
   margin: 0 0 var(--space-3);
 }
 
 h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2.25rem, 6vw, 4rem);
 }
 
 h2 {
