@@ -71,6 +71,124 @@ header {
     align-items: center;
 }
 
+/* Footer */
+
+/* Footer */
+footer {
+  margin-top: var(--space-6);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-logo {
+     display: block;
+     padding-bottom: 15px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  padding-block: var(--space-6);
+}
+
+footer h4 {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-3);
+}
+
+footer p {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.footer-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-list li {
+  margin-bottom: var(--space-2);
+}
+
+.footer-list a {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  transition: color var(--transition);
+}
+
+.footer-list a:hover {
+  color: var(--color-text);
+}
+
+.footer-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.footer-tag {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.footer-tag:hover {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+.footer-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.footer-form input {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: inherit;
+}
+
+.footer-form button {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-3);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  font-size: 0.8rem;
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   /* styles here apply only on screens 768px wide or narrower */
   .nav-toggle {
