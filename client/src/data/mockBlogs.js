@@ -9,6 +9,7 @@ export const mockBlogs = [
     author: { name: "Asha Verma" },
     readingTime: 6,
     createdAt: "2026-10-20",
+    
   },
   {
     _id: "2",
