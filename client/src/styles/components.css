@@ -937,3 +937,76 @@ footer p {
   border-radius: var(--radius-md);
   color: var(--color-danger);
 }
+
+/* Auth pages */
+.auth-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width:fit-content;
+  margin: var(--space-5) auto;
+  padding: var(--space-5);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-card label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.auth-card label span {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+}
+
+.auth-card input {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: inherit;
+}
+
+.auth-card input:focus {
+  outline: none;
+  border-color: var(--color-text);
+}
+
+.auth-card button {
+  padding: var(--space-3);
+  background: var(--color-text);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  cursor: pointer;
+}
+
+.auth-card button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-card a {
+  color: var(--color-primary);
+}
+
+.nav-user {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.nav-logout {
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: var(--color-text);
+}

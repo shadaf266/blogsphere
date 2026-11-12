@@ -1,16 +1,18 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext.jsx";
+
 export default function Navbar() {
+  const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <header>
       <nav className="container navbar">
         <div className="logo-container">
           <button
             className="nav-toggle"
-            onClick={() => {
-              setIsOpen(!isOpen);
-            }}
+            onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
             aria-expanded={isOpen}
           >
@@ -41,10 +43,9 @@ export default function Navbar() {
             <img src="/blogsphere-logo.svg" alt="BlogSphere" />
           </Link>
         </div>
+
         <div
-          onClick={() => {
-            setIsOpen(false);
-          }}
+          onClick={() => setIsOpen(false)}
           className={isOpen ? "nav-links open" : "nav-links"}
         >
           <NavLink to="/blogs">Explore</NavLink>
@@ -52,9 +53,20 @@ export default function Navbar() {
           <NavLink to="/about">About</NavLink>
           <NavLink to="/contact">Contact</NavLink>
         </div>
+
         <div className="nav-actions">
-          <Link to="/login">Login</Link>
-          <Link to="/blogs/create">Write</Link>
+          {user ? (
+            <>
+              <span className="nav-user">Hi, {user.name.split(" ")[0]}</span>
+              <Link to="/blogs/create">Write</Link>
+              <button className="nav-logout" onClick={logout}>Logout</button>
+            </>
+          ) : (
+            <>
+              <Link to="/login">Login</Link>
+              <Link to="/register">Sign up</Link>
+            </>
+          )}
         </div>
       </nav>
     </header>
