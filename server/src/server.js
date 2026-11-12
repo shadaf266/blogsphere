@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import {notFound,errorHandler} from './middleware/errorHandler.js';
 import connectDB from './config/db.js';
+import blogRoutes from "./routes/blogRoutes.js";
 const app = express();
 app.use(express.json());
 app.use(cors({origin:process.env.CLIENT_URL,credentials:true}));
@@ -16,7 +17,7 @@ app.get('/api/v1/health',(req,res)=>{
      database: mongoose.connection.readyState === 1 ? 'connected' : 'disconnected',
   });
 });
-
+app.use("/api/v1/blogs", blogRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
