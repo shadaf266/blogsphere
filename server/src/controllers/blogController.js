@@ -77,3 +77,101 @@ export const getBlogById = asyncHandler(async (req, res) => {
   }
   res.json({ success: true, message: "Blog retrieved successfully", data: blog });
 });
+
+
+const canModify = (blog, user) =>
+  blog.author.toString() === user._id.toString() || user.role === "admin";
+
+const loadOwnBlog = async (req, res) => {
+  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+    res.status(400);
+    throw new Error("Invalid blog ID");
+  }
+  const blog = await Blog.findById(req.params.id);
+  if (!blog) {
+    res.status(404);
+    throw new Error("Blog not found");
+  }
+  if (!canModify(blog, req.user)) {
+    res.status(403);
+    throw new Error("Forbidden: you do not own this blog");
+  }
+  return blog;
+};
+
+// POST /api/v1/blogs
+export const createBlog = asyncHandler(async (req, res) => {
+  const { title, excerpt, content, coverImage, category, tags, status } = req.body;
+  const blog = await Blog.create({
+    title,
+    excerpt,
+    content,
+    coverImage: coverImage || undefined,
+    category,
+    tags: Array.isArray(tags) ? tags : [],
+    status: status === "published" ? "published" : "draft",
+    author: req.user._id,
+  });
+  res.status(201).json({ success: true, message: "Blog created", data: blog });
+});
+
+// PUT /api/v1/blogs/:id
+export const updateBlog = asyncHandler(async (req, res) => {
+  const blog = await loadOwnBlog(req, res);
+  const { title, excerpt, content, coverImage, category, tags, status } = req.body;
+
+  if (title !== undefined) blog.title = title;
+  if (excerpt !== undefined) blog.excerpt = excerpt;
+  if (content !== undefined) blog.content = content;
+  if (coverImage) blog.coverImage = coverImage;
+  if (category) blog.category = category;
+  if (Array.isArray(tags)) blog.tags = tags;
+  if (status === "draft" || status === "published") blog.status = status;
+
+  await blog.save();
+  res.json({ success: true, message: "Blog updated", data: blog });
+});
+
+// PATCH /api/v1/blogs/:id/publish and /unpublish
+const setStatus = (status) =>
+  asyncHandler(async (req, res) => {
+    const blog = await loadOwnBlog(req, res);
+    blog.status = status;
+    await blog.save();
+    res.json({ success: true, message: `Blog ${status}`, data: blog });
+  });
+
+export const publishBlog = setStatus("published");
+export const unpublishBlog = setStatus("draft");
+
+// GET /api/v1/blogs/my/all
+export const getMyBlogs = asyncHandler(async (req, res) => {
+  const blogs = await populateBlog(
+    Blog.find({ author: req.user._id }).sort("-createdAt")
+  );
+  res.json({ success: true, message: "Your blogs", data: blogs });
+});
+
+// GET /api/v1/blogs/my/stats
+export const getMyStats = asyncHandler(async (req, res) => {
+  const blogs = await Blog.find({ author: req.user._id });
+  res.json({
+    success: true,
+    message: "Your stats",
+    data: {
+      total: blogs.length,
+      published: blogs.filter((b) => b.status === "published").length,
+      drafts: blogs.filter((b) => b.status === "draft").length,
+      views: blogs.reduce((sum, b) => sum + b.viewsCount, 0),
+      likes: blogs.reduce((sum, b) => sum + b.likesCount, 0),
+    },
+  });
+});
+
+
+// DELETE /api/v1/blogs/:id
+export const deleteBlog = asyncHandler(async (req, res) => {
+  const blog = await loadOwnBlog(req, res);
+  await blog.deleteOne();
+  res.json({ success: true, message: "Blog deleted", data: null });
+});

@@ -58,6 +58,7 @@ export default function Navbar() {
           {user ? (
             <>
               <span className="nav-user">Hi, {user.name.split(" ")[0]}</span>
+              <Link to="/dashboard">Dashboard</Link>
               <Link to="/blogs/create">Write</Link>
               <button className="nav-logout" onClick={logout}>Logout</button>
             </>
