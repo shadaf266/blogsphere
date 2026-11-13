@@ -12,6 +12,7 @@ import RegisterPage from "./pages/RegisterPage.jsx";
 import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
 import BlogEditorPage from "./pages/BlogEditorPage.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
+import BookmarksPage from "./pages/BookmarksPage.jsx";
 function App() {
   return (
      <Routes>
@@ -21,6 +22,7 @@ function App() {
       <Route path="/blogs/create" element={<ProtectedRoute><BlogEditorPage /></ProtectedRoute>} />
       <Route path="/blogs/edit/:id" element={<ProtectedRoute><BlogEditorPage /></ProtectedRoute>} />
       <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
+      <Route path="/bookmarks" element={<ProtectedRoute><BookmarksPage /></ProtectedRoute>} />
       <Route path="/" element={<HomePage/>}/>
       <Route path="/authors/:id" element={<AuthorProfilePage/>}/>
       <Route path="/blogs" element={<BLogListingPage/>}/>

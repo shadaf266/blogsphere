@@ -10,6 +10,9 @@ import blogRoutes from "./routes/blogRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import { notFound, errorHandler } from "./middleware/errorHandler.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
+import likeRoutes from "./routes/likeRoutes.js";
+import bookmarkRoutes from "./routes/bookmarkRoutes.js";
+import commentRoutes, { blogCommentRouter } from "./routes/commentRoutes.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -33,6 +36,10 @@ app.get("/api/v1/health", (req, res) => {
 
 app.use("/api/v1/blogs", blogRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/blogs", likeRoutes);
+app.use("/api/v1/bookmarks", bookmarkRoutes);
+app.use("/api/v1/blogs", blogCommentRouter);
+app.use("/api/v1/comments", commentRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

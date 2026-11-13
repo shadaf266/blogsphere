@@ -2,6 +2,9 @@ import mongoose from "mongoose";
 import Blog from "../models/Blog.js";
 import Category from "../models/Category.js";
 import asyncHandler from "../utils/asyncHandler.js";
+import Comment from "../models/Comment.js";
+import Like from "../models/Like.js";
+import Bookmark from "../models/Bookmark.js";
 
 const populateBlog = (query) =>
   query
@@ -168,10 +171,13 @@ export const getMyStats = asyncHandler(async (req, res) => {
   });
 });
 
-
-// DELETE /api/v1/blogs/:id
 export const deleteBlog = asyncHandler(async (req, res) => {
   const blog = await loadOwnBlog(req, res);
+  await Promise.all([
+    Comment.deleteMany({ blog: blog._id }),
+    Like.deleteMany({ blog: blog._id }),
+    Bookmark.deleteMany({ blog: blog._id }),
+  ]);
   await blog.deleteOne();
   res.json({ success: true, message: "Blog deleted", data: null });
 });

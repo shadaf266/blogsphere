@@ -1262,3 +1262,210 @@ footer p {
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
+/* Like and bookmark buttons */
+.engage-bar {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.engage-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.engage-btn:hover {
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
+}
+
+.engage-btn.liked {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.engage-btn.saved {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.engage-btn.liked svg {
+  animation: heart-pop 0.35s ease;
+}
+
+@keyframes heart-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.35); }
+  100% { transform: scale(1); }
+}
+
+/* Comments */
+.comments {
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-border);
+}
+
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.comment-form textarea,
+.comment-edit textarea {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: inherit;
+  resize: vertical;
+}
+
+.comment-form textarea:focus,
+.comment-edit textarea:focus {
+  outline: none;
+  border-color: var(--color-text);
+}
+
+.comment-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.comment-login a {
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.comment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.comment {
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.comment-avatar {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-accent);
+  font-family: var(--font-serif);
+  font-weight: 700;
+}
+
+.comment-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.comment-main p {
+  margin: var(--space-1) 0 var(--space-2);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.comment-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.comment-meta span {
+  font-size: 0.8rem;
+}
+
+.comment-actions {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+
+.comment-actions button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+}
+
+.comment-actions button:hover {
+  color: var(--color-text);
+}
+
+.comment-actions .danger:hover {
+  color: var(--color-danger);
+}
+
+/* Reading list */
+.bookmark-item {
+  position: relative;
+  display: flex;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.bookmark-item > .blog-card {
+  width: 100%;
+}
+
+.bookmark-item.removing {
+  opacity: 0;
+  transform: scale(0.96);
+}
+
+.bookmark-remove {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  padding: var(--space-1) var(--space-3);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.bookmark-remove:hover {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-6);
+  text-align: center;
+}
+
+.empty-state .btn {
+  margin-top: var(--space-3);
+}

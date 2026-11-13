@@ -2,7 +2,9 @@ import { Link, useParams } from "react-router-dom";
 import { FiUser, FiCalendar, FiClock } from "react-icons/fi";
 import LoadingSpinner from "../components/common/LoadingSpinner.jsx";
 import useFetch from "../hooks/useFetch.js";
-
+import LikeButton from "../components/blog/LikeButton.jsx";
+import BookmarkButton from "../components/blog/BookmarkButton.jsx";
+import CommentSection from "../components/blog/CommentSection.jsx";
 export default function BlogDetailPage() {
   const { slug } = useParams();
   const { data: blog, loading, error } = useFetch(`/blogs/slug/${slug}`);
@@ -43,6 +45,10 @@ export default function BlogDetailPage() {
           <span><FiCalendar className="meta-icon" /> {date}</span>
           <span><FiClock className="meta-icon" /> {blog.readingTime} min read</span>
         </div>
+        <div className="engage-bar">
+          <LikeButton blogId={blog._id} initialCount={blog.likesCount} />
+           <BookmarkButton blogId={blog._id} />
+         </div>
         <img src={blog.coverImage} alt={blog.title} className="article-cover" />
         <p className="article-lead">{blog.excerpt}</p>
         <div className="article-body">
@@ -51,6 +57,7 @@ export default function BlogDetailPage() {
           ))}
         </div>
       </article>
+      <CommentSection blogId={blog._id} />
     </div>
   );
 }
