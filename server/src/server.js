@@ -13,6 +13,8 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import likeRoutes from "./routes/likeRoutes.js";
 import bookmarkRoutes from "./routes/bookmarkRoutes.js";
 import commentRoutes, { blogCommentRouter } from "./routes/commentRoutes.js";
+import tagRoutes from "./routes/tagRoutes.js";
+
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -40,7 +42,7 @@ app.use("/api/v1/blogs", likeRoutes);
 app.use("/api/v1/bookmarks", bookmarkRoutes);
 app.use("/api/v1/blogs", blogCommentRouter);
 app.use("/api/v1/comments", commentRoutes);
-
+app.use("/api/v1/tags", tagRoutes);
 app.use(notFound);
 app.use(errorHandler);
 

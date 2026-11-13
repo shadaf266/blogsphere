@@ -18,10 +18,11 @@ export const getBlogs = asyncHandler(async (req, res) => {
 
   const filter = { status: "published" };
 
-  if (req.query.search) {
-    const regex = new RegExp(req.query.search.trim(), "i");
-    filter.$or = [{ title: regex }, { content: regex }];
-  }
+if (req.query.search) {
+  const escaped = req.query.search.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const regex = new RegExp(escaped, "i");
+  filter.$or = [{ title: regex }, { content: regex }];
+}
   if (req.query.category) {
     const cat = await Category.findOne({ slug: req.query.category });
     filter.category = cat ? cat._id : null;
