@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import api from "../services/api.js";
 export default function AboutContactPage() {
   const techStack = [
     { name: "MongoDB", role: "Database" },
@@ -49,14 +49,19 @@ const handleChange = (e) => {
   setSubmitted(false);
 };
 
-const handleSubmit = (e) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
   const newErrors = validate();
   setErrors(newErrors);
   if (Object.keys(newErrors).length > 0) return;
-  console.log(form);
-  setSubmitted(true);
-  setForm({ name: "", email: "", subject: "", message: "" });
+
+  try {
+    await api.post("/inquiries", form);
+    setSubmitted(true);
+    setForm(emptyForm);
+  } catch (err) {
+    setErrors({ message: err.response?.data?.message || "Could not send your message" });
+  }
 };
 
   return (

@@ -13,6 +13,14 @@ import ProtectedRoute from "./components/auth/ProtectedRoute.jsx";
 import BlogEditorPage from "./pages/BlogEditorPage.jsx";
 import DashboardPage from "./pages/DashboardPage.jsx";
 import BookmarksPage from "./pages/BookmarksPage.jsx";
+import { Navigate } from "react-router-dom";
+import AdminRoute from "./components/auth/AdminRoute.jsx";
+import AdminLayout from "./pages/Admin/AdminLayout.jsx";
+import AdminOverviewPage from "./pages/Admin/AdminOverviewPage.jsx";
+import AdminBlogsPage from "./pages/Admin/AdminBlogsPage.jsx";
+import AdminUsersPage from "./pages/Admin/AdminUsersPage.jsx";
+import AdminCategoriesPage from "./pages/Admin/AdminCategoriesPage.jsx";
+import AdminInquiriesPage from "./pages/Admin/AdminInquiriesPage.jsx";
 function App() {
   return (
      <Routes>
@@ -30,8 +38,17 @@ function App() {
       <Route path="/about" element={<AboutContactPage/>}/>
       <Route path="*" element={<NotFoundPage/>}/>
       <Route path="/contact" element={<AboutContactPage/>}/>
+      <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
+        <Route index element={<Navigate to="dashboard" replace />} />
+        <Route path="dashboard" element={<AdminOverviewPage />} />
+        <Route path="blogs" element={<AdminBlogsPage />} />
+        <Route path="users" element={<AdminUsersPage />} />  
+        <Route path="categories" element={<AdminCategoriesPage />} />
+        <Route path="inquiries" element={<AdminInquiriesPage />} /> 
+      </Route>
       </Route>
      </Routes>
+     
   )
 }
 

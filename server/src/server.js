@@ -14,6 +14,8 @@ import likeRoutes from "./routes/likeRoutes.js";
 import bookmarkRoutes from "./routes/bookmarkRoutes.js";
 import commentRoutes, { blogCommentRouter } from "./routes/commentRoutes.js";
 import tagRoutes from "./routes/tagRoutes.js";
+import adminRoutes from "./routes/adminRoutes.js";
+import inquiryRoutes from "./routes/inquiryRoutes.js";
 
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -26,7 +28,8 @@ if (process.env.NODE_ENV !== "production") app.use(morgan("dev"));
 
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 app.use("/api/v1/categories", categoryRoutes);
-
+app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/inquiries", inquiryRoutes);
 app.get("/api/v1/health", (req, res) => {
   res.json({
     success: true,

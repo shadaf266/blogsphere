@@ -58,6 +58,7 @@ export default function Navbar() {
           {user ? (
             <>
               <span className="nav-user">Hi, {user.name.split(" ")[0]}</span>
+              {user.role === "admin" && <Link to="/admin">Admin</Link>}
               <Link to="/dashboard">Dashboard</Link>
               <Link to="/bookmarks">Reading list</Link>
               <Link to="/blogs/create">Write</Link>

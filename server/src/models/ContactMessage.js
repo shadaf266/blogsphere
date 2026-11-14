@@ -1,19 +1,12 @@
 import mongoose from "mongoose";
 
-const commentSchema = new mongoose.Schema(
-  {
-    blog: { type: mongoose.Schema.Types.ObjectId, ref: "Blog", required: true, index: true },
-    author: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    content: {
-      type: String,
-      required: [true, "Comment cannot be empty"],
-      trim: true,
-      minlength: [1, "Comment cannot be empty"],
-      maxlength: [1000, "Comment cannot exceed 1000 characters"],
-    },
-    isEdited: { type: Boolean, default: false },
-  },
-  { timestamps: true }
-);
+const contactMessageSchema = new mongoose.Schema({
+  name: { type: String, required: [true, "Name is required"], trim: true },
+  email: { type: String, required: [true, "Email is required"], trim: true, lowercase: true },
+  subject: { type: String, required: [true, "Subject is required"], trim: true },
+  message: { type: String, required: [true, "Message is required"], trim: true },
+  status: { type: String, enum: ["new", "read", "resolved"], default: "new" },
+  createdAt: { type: Date, default: Date.now },
+});
 
-export default mongoose.model("Comment", commentSchema);
+export default mongoose.model("ContactMessage", contactMessageSchema);
