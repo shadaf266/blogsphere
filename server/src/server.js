@@ -16,7 +16,8 @@ import commentRoutes, { blogCommentRouter } from "./routes/commentRoutes.js";
 import tagRoutes from "./routes/tagRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import inquiryRoutes from "./routes/inquiryRoutes.js";
-
+import dns from "node:dns";
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
