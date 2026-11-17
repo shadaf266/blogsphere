@@ -31,8 +31,8 @@ export default function HomePage() {
     <>
       <section className="hero">
         <div className="container hero-inner">
-          <h1>Stories and ideas from developers who build</h1>
-          <p>Read, write and share what you learn. Join the BlogSphere community.</p>
+          <h1>Think. Write. Share. Inspire the Developer Community.</h1>
+          <p>Discover a space where knowledge meets creativity. Explore insightful articles, share your experiences, learn from fellow developers, and turn your ideas into something meaningful. Whether you're sharing your journey or discovering something new, BlogSphere is where developers connect, grow, and inspire each other.</p>
 
           <form className="hero-search" onSubmit={handleSearch}>
             <input
@@ -41,7 +41,20 @@ export default function HomePage() {
               value={query}
               onChange={(e) => setQuery(e.target.value)}
             />
-            <button type="submit">Search</button>
+            <button type="submit">Search <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <circle cx="11" cy="11" r="8" />
+    <path d="m21 21-4.35-4.35" />
+  </svg></button>
           </form>
 
           <div className="hero-actions">

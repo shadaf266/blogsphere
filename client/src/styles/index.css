@@ -1,7 +1,7 @@
 :root {
   /* Colors */
-  --color-primary: #1a8917;
-  --color-primary-hover: #0f730c;
+  --color-primary:#927de8;
+  --color-primary-hover:#927de4;
   --color-text: #242424;
   --color-text-muted: #6b6b6b;
   --color-bg: #ffffff;
@@ -12,8 +12,8 @@
   --color-accent: #ffc017;
 
   /* Fonts */
-  --font-serif: Charter, 'Bitstream Charter', 'Sitka Text', Cambria, Georgia, serif;
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;;
+  --font-sans: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif;;
 
   /* Spacing */
   --space-1: 4px;
@@ -51,24 +51,35 @@ body {
   background: var(--color-bg);
   line-height: 1.6;
 }
-
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-serif);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
   margin: 0 0 var(--space-3);
 }
 
 h1 {
-  font-size: clamp(2.25rem, 6vw, 4rem);
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
 }
 
 h2 {
-  font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+.section h2 {
+    margin: 0;
 }
 
 p {

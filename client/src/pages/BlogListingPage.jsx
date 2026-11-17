@@ -119,8 +119,14 @@ export default function BlogListingPage() {
               <BlogCard key={blog._id} blog={blog} />
             ))}
           </div>
-          <Pagination meta={meta} onPage={(p) => update({ page: p > 1 ? String(p) : "" })} />
-        </>
+            <Pagination
+              meta={meta}
+              onPage={(p) => {
+                update({ page: p > 1 ? String(p) : "" });
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            />       
+ </>
       )}
     </div>
   );
