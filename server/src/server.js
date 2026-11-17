@@ -105,7 +105,7 @@ app.use(errorHandler);
 app.use(cors({
     origin: [
         "http://localhost:5173",
-        "https://your-actual-frontend.vercel.app"
+        "https://blogsphere-three-xi.vercel.app/"
     ],
     credentials: true
 }));
