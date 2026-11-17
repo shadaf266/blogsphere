@@ -101,6 +101,15 @@ app.use("/api/v1/tags", tagRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
+
+app.use(cors({
+    origin: [
+        "http://localhost:5173",
+        "https://your-actual-frontend.vercel.app"
+    ],
+    credentials: true
+}));
+
 // Local development
 const PORT = process.env.PORT || 5000;
 
@@ -118,6 +127,7 @@ if (process.env.NODE_ENV !== "production") {
             process.exit(1);
         });
 }
+
 
 
 export default app;
