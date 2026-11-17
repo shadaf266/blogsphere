@@ -35,12 +35,16 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 // Middleware
-app.use(
-    cors({
-        origin: process.env.CLIENT_URL,
-        credentials: true
-    })
-);
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://blogsphere-three-xi.vercel.app"
+];
+
+app.use(cors({
+    origin: allowedOrigins,
+    credentials: true
+}));
+
 
 app.use(async (req, res, next) => {
     try {
@@ -102,13 +106,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 
-app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "https://blogsphere-three-xi.vercel.app/"
-    ],
-    credentials: true
-}));
+
 
 // Local development
 const PORT = process.env.PORT || 5000;
