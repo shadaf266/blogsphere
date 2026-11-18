@@ -4157,6 +4157,9 @@ html[data-theme="dark"] .comment {
 /* =========================================
    MOBILE NAVIGATION - FINAL FIX
 ========================================= */
+.mobile-menu{
+  display: none;
+}
 
 @media (max-width: 768px) {
   .site-header {
@@ -4220,7 +4223,7 @@ html[data-theme="dark"] .comment {
 
   /* Main menu */
   .mobile-menu {
-    display: block !important;
+    display: block;
     position: absolute;
     top: 100%;
     left: 0;
