@@ -15,6 +15,8 @@ import {
   FiMenu,
   FiShield,
   FiX,
+  FiChevronDown,
+  FiUser
 } from "react-icons/fi";
 
 import { useAuth } from "../../context/AuthContext.jsx";
@@ -134,7 +136,7 @@ export default function Navbar() {
               >
                 <span className="nav-avatar">{avatarLetter}</span>
                 <span className="user-chip-name">{firstName}</span>
-                <span className="user-chip-arrow">⌄</span>
+                <span className="user-chip-arrow"><FiChevronDown size={16} /></span>
               </button>
             </>
           ) : (
@@ -285,7 +287,7 @@ export default function Navbar() {
                   <FiX />
                 </button>
               </div>
-
+               
               <p className="drawer-label">Account</p>
 
               <nav className="drawer-links" onClick={closePanel}>
@@ -293,7 +295,10 @@ export default function Navbar() {
                   <FiLayout className="ni" />
                   Dashboard
                 </NavLink>
-
+                 <NavLink to="/profile">
+                   <FiUser className="ni" />
+                    My Profile
+                </NavLink>
                 <NavLink to="/blogs/create">
                   <FiEdit3 className="ni" />
                   Write an article

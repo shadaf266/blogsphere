@@ -21,6 +21,7 @@ import AdminBlogsPage from "./pages/Admin/AdminBlogsPage.jsx";
 import AdminUsersPage from "./pages/Admin/AdminUsersPage.jsx";
 import AdminCategoriesPage from "./pages/Admin/AdminCategoriesPage.jsx";
 import AdminInquiriesPage from "./pages/Admin/AdminInquiriesPage.jsx";
+import ProfilePage from "./pages/ProfilePage.jsx";
 function App() {
   return (
      <Routes>
@@ -38,6 +39,7 @@ function App() {
       <Route path="/about" element={<AboutContactPage/>}/>
       <Route path="*" element={<NotFoundPage/>}/>
       <Route path="/contact" element={<AboutContactPage/>}/>
+      <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>}/>
       <Route path="/admin" element={<AdminRoute><AdminLayout /></AdminRoute>}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<AdminOverviewPage />} />

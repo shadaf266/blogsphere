@@ -22,6 +22,7 @@ import commentRoutes, {
 import tagRoutes from "./routes/tagRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import inquiryRoutes from "./routes/inquiryRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 import {
     notFound,
@@ -57,6 +58,7 @@ app.use(async (req, res, next) => {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use("/api/v1/users", userRoutes);
 
 if (process.env.NODE_ENV !== "production") {
     app.use(morgan("dev"));
