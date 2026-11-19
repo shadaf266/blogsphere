@@ -2,6 +2,13 @@
 
 A full-stack blogging platform where users can explore articles, publish content, interact with posts, and manage their blogging experience.
 
+## Links
+
+- **Live site:** https://blogsphere-three-xi.vercel.app/
+- **API health check:** <your-render-url>/api/v1/health
+- **Demo video:** <your video link>
+- **Postman collection:** docs/BlogSphere_Postman.json
+
 ## 🌐 Live Demo
 
 - **Frontend:** https://blogsphere-three-xi.vercel.app
