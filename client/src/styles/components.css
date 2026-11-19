@@ -1928,7 +1928,7 @@ button.pill {
 
 body:has(.admin-shell),
 body:has(.dash-head) {
-  color: var(--dash-ink);
+  color: var(--glass-ink);
   background: radial-gradient(
       ellipse at 8% 5%,
       rgba(151, 132, 255, 0.22),
@@ -1952,7 +1952,7 @@ body:has(.dash-head) {
 
 .dash-head h1,
 .admin-main h1 {
-  color: var(--dash-ink);
+  color: var(--glass-ink);
   font-size: clamp(1.65rem, 3vw, 2.35rem);
   font-weight: 750;
   letter-spacing: -0.045em;
@@ -1981,7 +1981,8 @@ body:has(.dash-head) {
   overflow: hidden;
   border: 1px solid var(--dash-line);
   border-radius: var(--dash-radius);
-  background: var(--dash-glass);
+  background: var(--glass-surface);
+  border-color: var(--glass-border);
   box-shadow: var(--dash-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
@@ -2023,7 +2024,7 @@ body:has(.dash-head) {
 .stat-card strong,
 .admin-cards strong {
   position: relative;
-  color: var(--dash-ink);
+  color: var(--glass-ink);
   font-size: clamp(1.8rem, 3vw, 2.45rem);
   font-family: inherit;
   font-weight: 750;
@@ -2086,7 +2087,7 @@ body:has(.dash-head) {
 
 .dash-info strong,
 .dash-info a {
-  color: var(--dash-ink);
+  color: var(--glass-ink);
   font-weight: 650;
 }
 
@@ -2121,7 +2122,7 @@ body:has(.dash-head) {
 
 .admin-side h2 {
   padding: 0 10px 15px;
-  color: var(--dash-ink);
+  color: var(--glass-ink);
   font-size: 1.05rem;
   font-weight: 750;
 }
@@ -2142,7 +2143,7 @@ body:has(.dash-head) {
 }
 
 .admin-side a:hover {
-  color: var(--dash-purple);
+  color: var(--glass-ink);
   background: rgba(130, 111, 235, 0.08);
   transform: translateX(2px);
 }
@@ -2167,7 +2168,7 @@ body:has(.dash-head) {
 
 .admin-recent h2,
 .admin-main h2 {
-  color: var(--dash-ink);
+  color: var(--glass-ink);
   font-weight: 700;
   letter-spacing: -0.025em;
 }
@@ -2175,7 +2176,7 @@ body:has(.dash-head) {
 .admin-list li {
   padding: 14px 0;
   border-bottom-color: rgba(119, 111, 159, 0.13);
-  color: var(--dash-ink);
+  color: var(--glass-ink);
 }
 
 .admin-list span {
@@ -2197,7 +2198,7 @@ body:has(.dash-head) {
   border: 1px solid rgba(127, 111, 211, 0.2);
   border-radius: 13px;
   background: rgba(255, 255, 255, 0.7);
-  color: var(--dash-ink);
+  color: var(--glass-ink);
   box-shadow: inset 0 1px 2px rgba(45, 35, 95, 0.025);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
@@ -2219,7 +2220,7 @@ body:has(.dash-head) {
 }
 
 .admin-table {
-  color: var(--dash-ink);
+  color: var(--glass-ink);
   border-collapse: separate;
   border-spacing: 0;
 }
@@ -3924,6 +3925,11 @@ html[data-theme="dark"] footer {
   background: rgba(20, 18, 34, 0.72);
 }
 
+html[data-theme="dark"] .admin-table{
+  background: rgba(20, 18, 34, 0.72);
+
+}
+
 html[data-theme="dark"] .hero {
   background: radial-gradient(
       ellipse at 85% 15%,
@@ -4113,8 +4119,9 @@ html[data-theme="dark"] .status-suspended {
 
 /* ---------- Admin and tables ---------- */
 html[data-theme="dark"] .admin-table th {
-  background: rgba(44, 38, 74, 0.7);
-  color: var(--color-text-muted);
+    background: #242238;
+    color: #eaeaea;
+    border-color: rgba(119, 111, 159, 0.13);
 }
 
 html[data-theme="dark"] .admin-table td {
@@ -4135,7 +4142,8 @@ html[data-theme="dark"] .dash-row,
 html[data-theme="dark"] .admin-list li,
 html[data-theme="dark"] .inquiry,
 html[data-theme="dark"] .comment {
-  border-color: rgba(156, 140, 245, 0.14);
+    background: var(--glass-surface);
+    border-color: var(--glass-border);
 }
 
 /* ---------- Mobile menu (it used fixed light colours) ---------- */
@@ -4432,14 +4440,9 @@ html[data-theme="dark"] .comment {
   }
 }
 
-
 .profile-page {
   min-height: 80vh;
   padding: 55px 20px 80px;
-  background:
-    radial-gradient(circle at 10% 10%, rgba(146, 125, 232, 0.10), transparent 32%),
-    radial-gradient(circle at 90% 80%, rgba(116, 101, 216, 0.08), transparent 30%),
-    var(--color-background, #f8f7ff);
 }
 
 .profile-container {
@@ -4480,10 +4483,10 @@ html[data-theme="dark"] .comment {
 
 .profile-sidebar,
 .profile-form-card {
-  background: rgba(255, 255, 255, 0.76);
+  background: var(--glass-surface);
+  box-shadow: var(--glass-shadow);
   border: 1px solid var(--glass-border, rgba(116, 101, 216, 0.18));
   border-radius: 18px;
-  box-shadow: var(--glass-shadow, 0 12px 35px rgba(116, 101, 216, 0.10));
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -4643,9 +4646,11 @@ html[data-theme="dark"] .comment {
   align-items: center;
   gap: 12px;
   padding: 0 14px;
-  border: 1px solid rgba(116, 101, 216, 0.18);
+  background: var(--glass-surface);
+  color: var(--color-text);
+  border-color: var(--glass-border);
+  border: 1px solid var(--glass-border);
   border-radius: 9px;
-  background: rgba(255, 255, 255, 0.55);
   transition: 0.2s ease;
 }
 
@@ -4734,7 +4739,7 @@ html[data-theme="dark"] .comment {
   gap: 9px;
   padding: 12px 22px;
   border: none;
-  border-radius: 9px;
+  border-radius: var(--radius-pill);
   background: linear-gradient(135deg, #7465d8, #927de8);
   color: #fff;
   font-size: 14px;
@@ -4855,9 +4860,10 @@ html[data-theme="dark"] .comment {
     flex-direction: column;
     min-height: 230px;
     padding: 26px;
-    border: 1px solid #eceaf3;
+    background: var(--glass-surface);
+    border-color: var(--glass-border);
+    box-shadow: var(--glass-shadow);
     border-radius: 14px;
-    background: #fff;
     text-decoration: none;
     color: inherit;
     transition: transform 0.25s ease, box-shadow 0.25s ease,
