@@ -11,6 +11,7 @@ import mongoose from "mongoose";
 
 import connectDB from "./config/db.js";
 
+// Routes
 import blogRoutes from "./routes/blogRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import categoryRoutes from "./routes/categoryRoutes.js";
@@ -24,6 +25,7 @@ import adminRoutes from "./routes/adminRoutes.js";
 import inquiryRoutes from "./routes/inquiryRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 
+// Middleware
 import {
     notFound,
     errorHandler
@@ -35,7 +37,10 @@ dns.setServers(["8.8.8.8", "1.1.1.1"]);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-// Middleware
+// ======================================
+// CORS CONFIGURATION
+// ======================================
+
 const allowedOrigins = [
     "http://localhost:5173",
     "https://blogsphere-three-xi.vercel.app"
@@ -46,25 +51,30 @@ app.use(cors({
     credentials: true
 }));
 
-
-app.use(async (req, res, next) => {
-    try {
-        await connectDB();
-        next();
-    } catch (error) {
-        next(error);
-    }
-});
+// ======================================
+// GENERAL MIDDLEWARE
+// ======================================
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/v1/users", userRoutes);
 
 if (process.env.NODE_ENV !== "production") {
     app.use(morgan("dev"));
 }
 
-// Root route
+// ======================================
+// STATIC FILES
+// ======================================
+
+app.use(
+    "/uploads",
+    express.static(path.join(__dirname, "..", "uploads"))
+);
+
+// ======================================
+// ROOT ROUTE
+// ======================================
+
 app.get("/", (req, res) => {
     res.status(200).json({
         success: true,
@@ -72,19 +82,12 @@ app.get("/", (req, res) => {
     });
 });
 
-// Static files
-app.use(
-    "/uploads",
-    express.static(path.join(__dirname, "..", "uploads"))
-);
-
-// API routes
-app.use("/api/v1/categories", categoryRoutes);
-app.use("/api/v1/admin", adminRoutes);
-app.use("/api/v1/inquiries", inquiryRoutes);
+// ======================================
+// HEALTH CHECK
+// ======================================
 
 app.get("/api/v1/health", (req, res) => {
-    res.json({
+    res.status(200).json({
         success: true,
         uptime: process.uptime(),
         timestamp: new Date().toISOString(),
@@ -95,39 +98,61 @@ app.get("/api/v1/health", (req, res) => {
     });
 });
 
-app.use("/api/v1/blogs", blogRoutes);
-app.use("/api/v1/auth", authRoutes);
-app.use("/api/v1/blogs", likeRoutes);
-app.use("/api/v1/bookmarks", bookmarkRoutes);
-app.use("/api/v1/blogs", blogCommentRouter);
-app.use("/api/v1/comments", commentRoutes);
-app.use("/api/v1/tags", tagRoutes);
+// ======================================
+// API ROUTES
+// ======================================
 
-// Error handling
+const API = "/api/v1";
+
+app.use(`${API}/users`, userRoutes);
+app.use(`${API}/auth`, authRoutes);
+
+app.use(`${API}/blogs`, blogRoutes);
+app.use(`${API}/blogs`, likeRoutes);
+app.use(`${API}/blogs`, blogCommentRouter);
+
+app.use(`${API}/categories`, categoryRoutes);
+app.use(`${API}/tags`, tagRoutes);
+
+app.use(`${API}/bookmarks`, bookmarkRoutes);
+app.use(`${API}/comments`, commentRoutes);
+
+app.use(`${API}/admin`, adminRoutes);
+app.use(`${API}/inquiries`, inquiryRoutes);
+
+// ======================================
+// ERROR HANDLING
+// ======================================
+
 app.use(notFound);
 app.use(errorHandler);
 
+// ======================================
+// SERVER START
+// ======================================
 
-
-
-// Local development
 const PORT = process.env.PORT || 5000;
 
-if (process.env.NODE_ENV !== "production") {
-    connectDB()
-        .then(() => {
-            app.listen(PORT, () => {
-                console.log(
-                    `Server running on http://localhost:${PORT}`
-                );
-            });
-        })
-        .catch((error) => {
-            console.error("Database connection failed:", error);
-            process.exit(1);
+const startServer = async () => {
+    try {
+        await connectDB();
+
+        app.listen(PORT, () => {
+            console.log("----------------------------------");
+            console.log("BlogSphere API Started");
+            console.log(`Server: http://localhost:${PORT}`);
+            console.log(`Environment: ${process.env.NODE_ENV || "development"}`);
+            console.log("Database: Connected");
+            console.log("----------------------------------");
         });
+    } catch (error) {
+        console.error("Failed to start server:", error.message);
+        process.exit(1);
+    }
+};
+
+if (process.env.NODE_ENV !== "production") {
+    startServer();
 }
-
-
 
 export default app;
